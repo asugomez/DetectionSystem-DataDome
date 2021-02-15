@@ -52,9 +52,7 @@ public class Main {
      */
     public static List<String> blackList() {
         List<String> blackList = new ArrayList<>();
-        blackList.add("42.236.10.114");
-        blackList.add("42.236.10.114");
-        blackList.add("42.236.10.125 ");
+        blackList.add("42.236.10.125");
         blackList.add("42.236.10.117");
         return blackList;
     }
@@ -268,6 +266,9 @@ public class Main {
         List<String> whitelist = whiteList();
         List<String> blacklist = blackList();
 
+        System.out.println(whitelist);
+        System.out.println(blacklist);
+
         String apacheLog = listWithROBots();
         List<AccessLog> listOfLogs = AccessLog.allAccessLog(apacheLog);
         listOfBots = AccessLog.procedureDNS(listOfLogs,whitelist, blacklist);
@@ -279,16 +280,14 @@ public class Main {
                 System.out.println(bot.toString());
             }
         }
+        System.out.println("after");
+        System.out.println(whitelist);
+        System.out.println(blacklist);
         return listOfBots;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-
-        
-        System.out.println("toi aki");
-        notfinalTestDNS();
-
-        /*int number = 0;
+        int number = 0;
         File botsFile = new File("./botsFile/botsFile" + number +".txt");
         PrintStream stream = new PrintStream(botsFile);
         System.setOut(stream);   
@@ -334,7 +333,8 @@ public class Main {
         botsFile = new File("./botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
-        notfinalTestDNS();*/
+        
+        notfinalTestDNS();
 
     }
 

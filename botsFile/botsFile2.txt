@@ -1,0 +1,6 @@
+Bot nº23: 
+remoteHost = 216.244.66.230	identd = -	username = -	timerequest = 19/Dec/2020:14:14:26 +0100	requestClient = GET /robots.txt HTTP/1.1	statusCode = 200	sizeInBytes = 304	referer = "-"	userAgent = "MozillaDotBot/5.0 
+Bot nº24: 
+remoteHost = 54.36.149.55	identd = -	username = -	timerequest = 19/Dec/2020:16:06:42 +0100	requestClient = GET /index.php?option=com_content&view=article&id=46&Itemid=54 HTTP/1.1	statusCode = 200	sizeInBytes = 8938	referer = "-"	userAgent = "MoAhrefsBotzilla/5.0 
+Bot nº25: 
+remoteHost = 66.249.66.158	identd = -	username = -	timerequest = 19/Dec/2020:17:11:04 +0100	requestClient = GET / HTTP/1.1	statusCode = 200	sizeInBytes = 10479	referer = "-"	userAgent = "Mozilla/5.0Googlebot 

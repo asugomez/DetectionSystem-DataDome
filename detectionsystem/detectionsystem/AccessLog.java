@@ -215,10 +215,7 @@ public class AccessLog {
         // ---------- BEGIN -------------
         // Creating a regular expression for the records REGEX
         final String accessExpression = "^(\\S+) (\\S+) (\\S+) " + "\\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+)"
-                + " (\\S+)\\s*(\\S+)?\\s*\" (\\d{3}) (\\S+)" + " (\\S*)\\s* " + "(\\S*\\s*)";// [\u2014]$"; //TODO: find
-                                                                                             // a better way to have the
-                                                                                             // last expression (user
-                                                                                             // agent)
+                + " (\\S+)\\s*(\\S+)?\\s*\" (\\d{3}) (\\S+)" + " (\\S*)\\s* " + "(\\S*\\s*)";
 
         final Pattern pattern = Pattern.compile(accessExpression, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(apacheLog);
@@ -331,7 +328,6 @@ public class AccessLog {
 
     }
 
-    //TODO: #1 we could change the type of white and blaclist to a MAp <identifier, IP>
     /**
      * Function that do a DNS lookup to check if the IP address is in the whitelist.
      * In cases where it’s coming from an IP address that’s not on the whitelist, we’d want to do the nslookup. 
@@ -346,24 +342,22 @@ public class AccessLog {
         List<AccessLog> botsList = new ArrayList<>();
         for (AccessLog accessLog : allAccessLog) {
             //if the ip address is not in the whitelist or in the blacklist
-            
-            
-
-            if(!whiteList.contains(accessLog.getRemoteHost()) || !blackList.contains(accessLog.getRemoteHost())){
+            if(!(whiteList.contains(accessLog.getRemoteHost()) || blackList.contains(accessLog.getRemoteHost()))){
                 try {
-                    //reverse DNS lookup --> request IP                    
-                    InetAddress addr = InetAddress.getByName(accessLog.getRemoteHost());
-                    String dnsName = addr.getHostName();
-                    System.out.println("dnsName :" +dnsName);
+                    //reverse DNS lookup --> request IP    
+                    String ip = accessLog.getRemoteHost();   
 
-                    InetAddress hostName = InetAddress.getByName(dnsName);
-                    String ipAdress = hostName.getHostAddress();
-                    System.out.println("ip : " + ipAdress );
-                    //If the IP address from the response matches the IP of the request, you’re set.  
-                    if(ipAdress == accessLog.getRemoteHost()){
+                    InetAddress hostname = InetAddress.getByName(ip);
+                    String hostNameString = hostname.getHostName();
+
+                    InetAddress ipAddress = InetAddress.getByName(hostNameString);
+                    String ipAddressString = ipAddress.getHostAddress();
+
+                    if(ipAddressString == accessLog.getRemoteHost()){
                         whiteList.add(accessLog.getRemoteHost());
                     }
                     else{
+                        blackList.add(accessLog.getRemoteHost());
                         botsList.add(accessLog);
                     }
                 } catch (UnknownHostException e) {

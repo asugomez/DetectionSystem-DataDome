@@ -347,17 +347,17 @@ public class AccessLog {
         for (AccessLog accessLog : allAccessLog) {
             //if the ip address is not in the whitelist or in the blacklist
             
-            System.out.println("im hereee");
+            
 
             if(!whiteList.contains(accessLog.getRemoteHost()) || !blackList.contains(accessLog.getRemoteHost())){
                 try {
-                    //reverse DNS lookup --> request IP
-                    InetAddress host = InetAddress.getByAddress(accessLog.getRemoteHost().getBytes());
-                    String dnsName = host.getHostName();
+                    //reverse DNS lookup --> request IP                    
+                    InetAddress addr = InetAddress.getByName(accessLog.getRemoteHost());
+                    String dnsName = addr.getHostName();
                     System.out.println("dnsName :" +dnsName);
 
-                    InetAddress address = InetAddress.getByName(dnsName);
-                    String ipAdress = address.getHostAddress();
+                    InetAddress hostName = InetAddress.getByName(dnsName);
+                    String ipAdress = hostName.getHostAddress();
                     System.out.println("ip : " + ipAdress );
                     //If the IP address from the response matches the IP of the request, you’re set.  
                     if(ipAdress == accessLog.getRemoteHost()){

@@ -9,31 +9,11 @@ Also, if we check the robots.txt file of the website, we can see there are some 
 
 ###How would you qualify a "normal" human traffic on this site? Based on which criteria?
 
-With the website log of this site, I would detect 
+With the website log of this site, I would detect the number of requests. If you can see a large number of request in a short time, it is not a normal human traffic, therefore is a bot.
 
-"Known bots are detected via technical detection and validation: HTTP fingerprinting, known AI/custom rule pattern matching, and good bot authentication.
+Also, "if a domain is benign, even if is is not very popular, the number of queries should exceed the threshold at least several times during the monitoring period."
 
-New threats represent the real challenge. They are identified via statistical and behavioral detection, using data from server-side fingerprints, a JS rendering engine, SDK inputs and session tracking." https://datadome.co/bot-management-protection/bot-detection-how-to-identify-bot-traffic-to-your-website/ 
-
-Somme patterns indicating malicious domain are:
-• "Short lived domain – a domain, which suddenly appears in the global scope time series and disappears after a short period of activity. If a domain is benign, even if is is not very popular, the number of queries should exceed the threshold at least several times during the monitoring period.
-• Daily similarity – this feature checks if there are domains that show daily similarities in their request count change over time.
-• Repeating patterns – this feature aims to detect regularly repeating patterns.
-• Access ratio – this feature checks whether the domain is generally in an idle state or is accessed continuously.
-
- Number of distinct IP addresses – the number of IP addresses re- solved for a given domain during defined time window.
-• Number of distinct countries.
-• Number of domains sharing the IP with.
-• Reverse DNS query results – number of reverse DNS queries of the returned IP addresses.
-
-• Average TTL – simple TTL average, used in various detection methods.
-• Standard deviation of TTL.
-• Number of distinct TTL values.
-• Number of TTL changes.
-• Percentage usage of specific TTL ranges – malicious traffic tends to set their TTL values to lower values.
-
-• Percentage of numerical characters in domain name.
-• Percentage of the length of the longest meaningful substring."
+A normal human traffic won't show daily similarities in their request count change over time and will not regularly repeat patterns. And the number the number of IP addresses resolved for a given domain during defined time window shouldn't be so big.
 
 https://geant3.archive.geant.org/media_centre/media_library/media%20library/gn3_jra2_t4_m4_deliverable.pdf 
 

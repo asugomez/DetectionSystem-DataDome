@@ -401,6 +401,13 @@ public class AccessLog {
         return botsList;
     }
 
+    /*
+    * we could also use an algorithm that detect the p ercentage of numerical characters in domain name or/and
+    * the percentage of the length of the longest meaningful substring to detect bots
+    *
+    * A normal human traffic won't show daily similarities in their request count change over time and will not regularly repeat patterns. 
+    * And the number the number of IP addresses resolved for a given domain during defined time window shouldn't be so big.
+    */
 
     /**
      * how to make it faster  ??

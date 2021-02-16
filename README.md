@@ -41,9 +41,8 @@ https://geant3.archive.geant.org/media_centre/media_library/media%20library/gn3_
 One good bot is AhrefBots (marketing bot) which, according to their website, it crawls the website making notes of outbound links and adding them to the ahrefbots database. It will periodically re-crawl the website to check the current status of previously found links. It does not collect or store any other information about the website. It does not trigger ads on your website (if any) and won’t add numbers to your Google Analytics traffic.
 Also, the good bots will always respects the robots.txt file
 
+A type of bad bot is a Mail address harvesting bot, that is a spider visiting the site harvesting mailto: mail addresses to send spam later. One example is the spam mail address harvesting bot, hosted by GWBN XIAMEN QIANPU broadband access company gwbn.net.cn, CN; later sending Nigerian 419-scam spam via bigpond.com. (http://www.kloth.net/internet/badbots-2003.php)
 
-and Scraper bots 
-https://datadome.co/bot-detection/good-bots-vs-bad-bots-and-when-you-should-block-them/ 
 
 ##Step 2
 Implemented in the AccessLog java file and Main java file.

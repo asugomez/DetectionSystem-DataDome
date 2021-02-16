@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -184,7 +185,7 @@ public class Main {
         List<AccessLog> listOfBots =  new ArrayList<>();
         List<String> robotsTxt = robotsTxtList();
 
-        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDomeDS/webSiteLog.txt";
+        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
 
         try{
             String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
@@ -211,7 +212,7 @@ public class Main {
         List<String> robotsTxt = robotsTxtList();
         List<String> whitelist = whiteList();
 
-        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDomeDS/webSiteLog.txt";
+        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
 
         try{
             String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
@@ -239,7 +240,7 @@ public class Main {
         List<String> whitelist = whiteList();
         List<String> blacklist = blackList();
 
-        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDomeDS/webSiteLog.txt";
+        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
 
         try{
             String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
@@ -287,6 +288,8 @@ public class Main {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
+
+
         int number = 0;
         File botsFile = new File("./botsFile/botsFile" + number +".txt");
         PrintStream stream = new PrintStream(botsFile);

@@ -26,3 +26,5 @@ A type of bad bot is a Mail address harvesting bot, that is a spider visiting th
 
 ##Step 2
 Implemented in the AccessLog java file and Main java file.
+
+##Step 3

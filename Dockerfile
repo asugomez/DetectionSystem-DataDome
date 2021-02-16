@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-alpine
-MAINTAINER asunciongomez <asuncion.gomez@ug.uchile.cl>
+
 VOLUME /tmp
 ARG JAVA_OPTS
 ENV JAVA_OPTS=$JAVA_OPTS

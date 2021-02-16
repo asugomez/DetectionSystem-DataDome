@@ -28,3 +28,9 @@ A type of bad bot is a Mail address harvesting bot, that is a spider visiting th
 Implemented in the AccessLog java file and Main java file.
 
 ##Step 3
+To make faster the reverse DNS lookup, I implemented a binary search algorithm to search the ip address in the white and black list. This way, we will search faster (O(logN) on the worst case)
+and we will be able to detect the bots.
+
+One limitation is the number of addresses (i.e. hostnames). We should reduce this number to consume the log as fast as possible. So, in order to do that, we could  determine if each request is really necessary. (https://kinsta.com/blog/reduce-dns-lookups/)
+
+We could also change the TTL value. The higher the TTL, the less the browser will need to perform another DNS lookup. 

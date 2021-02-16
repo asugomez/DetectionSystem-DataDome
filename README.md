@@ -9,6 +9,12 @@ Also, if we check the robots.txt file of the website, we can see there are some 
 
 ###How would you qualify a "normal" human traffic on this site? Based on which criteria?
 
+With the website log of this site, I would detect 
+
+"Known bots are detected via technical detection and validation: HTTP fingerprinting, known AI/custom rule pattern matching, and good bot authentication.
+
+New threats represent the real challenge. They are identified via statistical and behavioral detection, using data from server-side fingerprints, a JS rendering engine, SDK inputs and session tracking." https://datadome.co/bot-management-protection/bot-detection-how-to-identify-bot-traffic-to-your-website/ 
+
 Somme patterns indicating malicious domain are:
 • "Short lived domain – a domain, which suddenly appears in the global scope time series and disappears after a short period of activity. If a domain is benign, even if is is not very popular, the number of queries should exceed the threshold at least several times during the monitoring period.
 • Daily similarity – this feature checks if there are domains that show daily similarities in their request count change over time.
@@ -32,7 +38,10 @@ Somme patterns indicating malicious domain are:
 https://geant3.archive.geant.org/media_centre/media_library/media%20library/gn3_jra2_t4_m4_deliverable.pdf 
 
 ###Could you focus on 1 good bot and 1 bad bot to tell us more about them?
-Marketing bots such as AhrefsBots is a good bot
+One good bot is AhrefBots (marketing bot) which, according to their website, it crawls the website making notes of outbound links and adding them to the ahrefbots database. It will periodically re-crawl the website to check the current status of previously found links. It does not collect or store any other information about the website. It does not trigger ads on your website (if any) and won’t add numbers to your Google Analytics traffic.
+Also, the good bots will always respects the robots.txt file
+
+
 and Scraper bots 
 https://datadome.co/bot-detection/good-bots-vs-bad-bots-and-when-you-should-block-them/ 
 

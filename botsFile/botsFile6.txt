@@ -1,6 +1,6 @@
 [123.123.123.123, 42.236.10.125, 87.247.143.30, 66.249.66.158]
 [42.236.10.125, 42.236.10.117]
-Bot nº32: 
+Bot nº520945: 
 remoteHost = 42.236.10.114	identd = -	username = -	timerequest = 19/Dec/2020:15:23:11 +0100	requestClient = GET /templates/jp_hotel/css/menu.css HTTP/1.1	statusCode = 200	sizeInBytes = 1457	referer = "http://www.almhuette-raith.at/"	userAgent = "Mozilla/5.0 
 after
 [123.123.123.123, 42.236.10.125, 87.247.143.30, 66.249.66.158]

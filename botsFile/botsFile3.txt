@@ -4,3 +4,4 @@ Bot nº30:
 remoteHost = 42.236.10.114	identd = -	username = -	timerequest = 19/Dec/2020:15:23:11 +0100	requestClient = GET /templates/jp_hotel/css/suckerfish.css HTTP/1.1	statusCode = 200	sizeInBytes = 3465	referer = "http://www.almhuette-raith.at/"	userAgent = "Mozilla/5.0 
 Bot nº31: 
 remoteHost = 42.236.10.125	identd = -	username = -	timerequest = 19/Dec/2020:15:23:12 +0100	requestClient = GET /media/system/js/caption.js HTTP/1.1	statusCode = 200	sizeInBytes = 1963	referer = "http://www.almhuette-raith.at/"	userAgent = "Mozilla/5.0 
+Number of bots: 3

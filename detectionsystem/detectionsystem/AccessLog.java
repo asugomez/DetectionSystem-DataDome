@@ -36,7 +36,7 @@ public class AccessLog {
         this.username = DEFAULT;
         this.timeRequest = null;
         this.requestClient = null;
-        this.statusCode = null; // TODO: what status Code put here
+        this.statusCode = null; 
         this.sizeInBytes = null;
         this.referer = DEFAULT;
         this.userAgent = null;
@@ -199,7 +199,7 @@ public class AccessLog {
     }
 
     /**
-     * Function that creates a list of all the acces log
+     * Method that creates a list of all the acces log
      * 
      * @param apacheLog
      * @return
@@ -244,7 +244,7 @@ public class AccessLog {
     }
 
     /**
-     * First detection function: uses the user agent information
+     * First detection algorithm: uses the user agent information
      * 
      * @param allAccessLog
      * @param whiteList    a list of normal user agent (i.e. not bots)
@@ -306,11 +306,11 @@ public class AccessLog {
 
 
     /**
-     * Function that implements the two algorithms we described below
+     * Method that implements the two algorithms we described below
      * @param allAccessLog
      * @param robotsTxt
      * @param whiteList
-     * @return
+     * @return a list of bots detected
      */
     public static List<AccessLog> detectionSystem1(List<AccessLog> allAccessLog, List<String> robotsTxt, List<String> whiteList){
         List<AccessLog> botsListRobotsTxt = robotsTxtDetection(allAccessLog, robotsTxt);
@@ -329,14 +329,14 @@ public class AccessLog {
     }
 
     /**
-     * Function that do a DNS lookup to check if the IP address is in the whitelist.
+     * Method that do a DNS lookup to check if the IP address is in the whitelist.
      * In cases where it’s coming from an IP address that’s not on the whitelist, we’d want to do the nslookup. 
      * If the address is verified positively, it enters the whitelist. If not, it enters the blacklist 
      * https://www.onely.com/blog/detect-verify-crawlers/
      * @param allAccessLog the list of all the website logs
      * @param whiteList a list with all the ip addresses of the good bots or human's ip
      * @param blackList a list with all the bad bot's ip addresses
-     * @return botsList a list of bots founded 
+     * @return botsList a list of bots detected 
      */
     public static List<AccessLog> procedureDNS(List<AccessLog> allAccessLog, List<String> whiteList, List<String> blackList) {
         List<AccessLog> botsList = new ArrayList<>();
@@ -370,27 +370,21 @@ public class AccessLog {
         }
         return botsList;
     }
-    
-    /**
-     * Function that implements all the detection algorithms and
-     * @return a list of all bots 
-    */
-    public List<AccessLog> isABot(List<AccessLog> allAccessLog, List<String> whiteList, List<String> robotsTxt) {
-        List<AccessLog> botsList = new ArrayList<>();
 
-        //algorithms
-        boolean botIsInTheList = false;
-        AccessLog newBot = new AccessLog(); //it will be with the information that we recuperated with the algorithms
-            for (AccessLog accessLog : botsList) {
-                if(accessLog.equals(newBot)){
-                    botIsInTheList = true;
-                }
-            }
-            if(!botIsInTheList){
-                botsList.add(newBot);
-            }
+    /**
+     * Improves the procedureDNS method
+     * @param allAccessLog
+     * @param whiteList
+     * @param blackList
+     * @return a list of bots detected
+     */
+    public static List<AccessLog> procedureDNSImprove(List<AccessLog> allAccessLog, List<String> whiteList, List<String> blackList) {
+        List<AccessLog> botsList = new ArrayList<>();
         return botsList;
+
     }
+    
+    
 
     /**
      * from the normal range that we defined ??

@@ -121,6 +121,7 @@ public class Main {
             System.out.println(listOfBots);
         }
 
+        System.out.println("Number of bots: "+ listOfBots.size());
         return listOfBots;
     }
 
@@ -139,6 +140,7 @@ public class Main {
         } else {
             System.out.println("Something got wrong :(");
         }
+        System.out.println("Number of bots: "+ listOfBots.size());
         return listOfBots;
 
     }
@@ -159,6 +161,7 @@ public class Main {
             }
         }
 
+        System.out.println("Number of bots: "+ listOfBots.size());
         return listOfBots;
 
     }
@@ -177,6 +180,7 @@ public class Main {
                 System.out.println(bot.toString());
             }
         }
+        System.out.println("Number of bots: "+ listOfBots.size());
         return listOfBots;
 
     }
@@ -203,6 +207,8 @@ public class Main {
         } catch (IOException e){
             e.printStackTrace();
         }
+
+        System.out.println("Number of bots: "+ listOfBots.size());
         return listOfBots;
     }
     
@@ -231,6 +237,8 @@ public class Main {
         } catch (IOException e){
             e.printStackTrace();
         }
+
+        System.out.println("Number of bots: "+ listOfBots.size());
         return listOfBots;
 
     }
@@ -258,6 +266,7 @@ public class Main {
         } catch (IOException e){
             e.printStackTrace();
         }
+        System.out.println("Number of bots: "+ listOfBots.size());
         return listOfBots;
 
     }
@@ -284,6 +293,8 @@ public class Main {
         System.out.println("after");
         System.out.println(whitelist);
         System.out.println(blacklist);
+
+        System.out.println("Number of bots: "+ listOfBots.size());
         return listOfBots;
     }
 

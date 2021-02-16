@@ -5,9 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -269,7 +270,7 @@ public class Main {
             String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
             List<AccessLog> listOfLogs = AccessLog.allAccessLog(apacheLog);
 
-            listOfBots = dnsLookUp.procedureDNS(listOfLogs,whitelist, blacklist);
+            listOfBots = DNSLookUp.procedureDNS(listOfLogs,whitelist, blacklist);
 
             if (listOfBots.isEmpty()) {
                 System.out.println("Something got wrong :(");
@@ -289,13 +290,30 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
 
-        String ip="100.0";
-        String ip2="2.3"; // ip2 < ip
-        System.out.println(ip2.compareTo(ip));
-        System.out.println(ip.compareTo(ip2));
-        System.out.println(ip.compareTo(ip));
+        String apacheLog = listWithoutBots();
+        List<AccessLog> listOfLogs = AccessLog.allAccessLog(apacheLog);
+        System.out.println(DNSLookUp.sortIPAddress(listOfLogs));
 
-        int number = 0;
+        /*List<String> addressList = new ArrayList<>();
+
+        for (AccessLog log : listOfLogs) {
+            addressList.add(log.getRemoteHost());
+        }
+        Collections.sort(addressList, (a, b) -> {
+            int[] aOct = Arrays.stream(a.split("\\.")).mapToInt(Integer::parseInt).toArray();
+            int[] bOct = Arrays.stream(b.split("\\.")).mapToInt(Integer::parseInt).toArray();
+            int r = 0;
+            for (int i = 0; i < aOct.length && i < bOct.length; i++) {
+                r = Integer.compare(aOct[i], bOct[i]);
+                if (r != 0) {
+                    return r;
+                }
+            }
+            return r;
+        });
+        System.out.println(addressList);*/
+
+        /*int number = 0;
         File botsFile = new File("./botsFile/botsFile" + number +".txt");
         PrintStream stream = new PrintStream(botsFile);
         System.setOut(stream);   
@@ -341,7 +359,7 @@ public class Main {
         botsFile = new File("./botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
-        finalTestDNS();     
+        finalTestDNS();     */
     
     
 

@@ -24,10 +24,10 @@ Also, the good bots will always respects the robots.txt file
 A type of bad bot is a Mail address harvesting bot, that is a spider visiting the site harvesting mailto: mail addresses to send spam later. One example is the spam mail address harvesting bot, hosted by GWBN XIAMEN QIANPU broadband access company gwbn.net.cn, CN; later sending Nigerian 419-scam spam via bigpond.com. (http://www.kloth.net/internet/badbots-2003.php)
 
 
-##Step 2
+##Step 2 --> AccessLog.java
 Implemented in the AccessLog java file and Main java file.
 
-##Step 3
+##Step 3 --> dnsLookUp.java
 To make faster the reverse DNS lookup, I implemented a binary search algorithm to search the ip address in the white and black list. This way, we will search faster (O(logN) on the worst case)
 and we will be able to detect the bots.
 

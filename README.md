@@ -5,3 +5,13 @@ docker build -f Dockerfile -t datadome:lastest .
 
 <h2> Then: RUN </h2>
 docker run -i -t --name datadomeContainer -p 8080:8080 datadome:latest
+
+<h3> If the dockerfile does not work... </h3>
+```
+cd detectionsystem
+javac detectionsystem/*.java
+java detectionsystem.Main
+´´´
+
+
+et voilà :)

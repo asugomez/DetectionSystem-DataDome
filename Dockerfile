@@ -14,6 +14,3 @@ RUN javac detectionsystem/Main.java
 EXPOSE 8080
 #ENTRYPOINT ["java","-cp", "Main"]
 ENTRYPOINT [ "java","Main"]
-
-#search what to put in each value
-

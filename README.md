@@ -6,7 +6,7 @@ docker build -f Dockerfile -t datadome:latest .
 <h2> Then: RUN </h2>
 docker run -i -t --name datadomeContainer -p 8080:8080 datadome:latest
 
-*to eliminate the containers use the following command: *
+<h3>to eliminate the containers use the following command: </h3>
 docker rm -f $(docker ps -aq) 
 
 <h2> If the dockerfile does not work... </h2>
@@ -15,3 +15,4 @@ docker rm -f $(docker ps -aq)
 <p> java detectionsystem.Main </p>
 
 ### et voilà :)
+

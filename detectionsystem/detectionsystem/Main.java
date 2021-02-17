@@ -443,10 +443,11 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
         int number = 0;
-        File botsFolder = new File("./botsFolder");
-        if (!botsFolder.exists()){
+        File botsFolder = new File("botsFolder");
+        botsFolder.mkdirs();
+        /*if (!botsFolder.exists()){
             botsFolder.mkdirs();
-        }
+        }*/
         // --------- TEST 0 ------------ //
         File botsFile = new File("./botsFolder/botsFile" + number +".txt");
         PrintStream stream = new PrintStream(botsFile);
@@ -530,14 +531,12 @@ public class Main {
         /*
         number++;
 
-        // --------- TEST 10 ------------ //
+        // --------- TEST 10 (not fast) ------------ //
         botsFile = new File("./botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         testDNSlookupImprove();
         */
-        
-    
     
 
     }

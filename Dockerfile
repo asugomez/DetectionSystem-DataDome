@@ -1,16 +1,13 @@
-FROM openjdk:8-jdk-alpine
-#VOLUME detectionsystem.jar
-#ARG JAVA_OPTS
-#ENV JAVA_OPTS=$JAVA_OPTS
-COPY /detectionsystem /
-WORKDIR /
+FROM openjdk:11.0.6-slim
 
-RUN javac detectionsystem/AccessLog.java
-RUN javac detectionsystem/DNSLookUp.java
-RUN javac detectionsystem/Main.java
+COPY /detectionsystem/detectionsystem /detectionsystem/detectionsystem
 
-#RUN jar -cvf datadome.jar /*.class
+RUN javac /detectionsystem/detectionsystem/*.java
+
+COPY /detectionsystem /detectionsystem
 
 EXPOSE 8080
-#ENTRYPOINT ["java","-cp", "Main"]
-ENTRYPOINT [ "java","Main"]
+
+WORKDIR /detectionsystem
+
+ENTRYPOINT java detectionsystem.Main   

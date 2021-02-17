@@ -9,7 +9,6 @@ import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -222,7 +221,7 @@ public class Main {
         List<AccessLog> listOfBots =  new ArrayList<>();
         List<String> robotsTxt = robotsTxtList();
 
-        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
+        String pathWebSiteLog = "./webSiteLog.txt";
 
         try{
             String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
@@ -253,7 +252,7 @@ public class Main {
         List<AccessLog> listOfBots =  new ArrayList<>();
         List<String> whitelist = whiteList();
 
-        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
+        String pathWebSiteLog = "./webSiteLog.txt";
 
         try{
             String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
@@ -284,7 +283,7 @@ public class Main {
         List<String> robotsTxt = robotsTxtList();
         List<String> whitelist = whiteList();
 
-        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
+        String pathWebSiteLog = "./webSiteLog.txt";
 
         try{
             String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
@@ -317,7 +316,7 @@ public class Main {
         List<String> whitelist = whiteList();
         List<String> blacklist = blackList();
 
-        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
+        String pathWebSiteLog = "./webSiteLog.txt";
 
         try{
             String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
@@ -346,7 +345,7 @@ public class Main {
     */
     public static List<String> orderListTest(){
         List<String> ipAddress = new ArrayList<>();
-        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
+        String pathWebSiteLog = "./webSiteLog.txt";
 
         try{
             String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
@@ -373,7 +372,7 @@ public class Main {
         List<String> whitelist = whiteList();
         List<String> blacklist = blackList();
 
-        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
+        String pathWebSiteLog = "./webSiteLog.txt";
 
         try{
             String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
@@ -400,7 +399,7 @@ public class Main {
     }
     
     public static void testDNSImproveEasy(){
-        List<AccessLog> listOfBots =  new ArrayList<>();
+        //List<AccessLog> listOfBots =  new ArrayList<>();
 
         List<String> whiteList = whiteList();
         List<String> blackList = blackList();
@@ -444,8 +443,12 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
         int number = 0;
+        File botsFolder = new File("./botsFolder");
+        if (!botsFolder.exists()){
+            botsFolder.mkdirs();
+        }
         // --------- TEST 0 ------------ //
-        File botsFile = new File("../botsFile/botsFile" + number +".txt");
+        File botsFile = new File("./botsFolder/botsFile" + number +".txt");
         PrintStream stream = new PrintStream(botsFile);
         System.setOut(stream);   
         testNoBots1();
@@ -453,7 +456,7 @@ public class Main {
         number++;
 
         // --------- TEST 1 ------------ //
-        botsFile = new File("../botsFile/botsFile" + number +".txt");
+        botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         testNoBots2();
@@ -461,7 +464,7 @@ public class Main {
         number++;
 
         // --------- TEST 2 ------------ //
-        botsFile = new File("../botsFile/botsFile" + number +".txt");
+        botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         testBotsUserAgent();
@@ -469,7 +472,7 @@ public class Main {
         number++;
         
         // --------- TEST 3 ------------ //
-        botsFile = new File("../botsFile/botsFile" + number +".txt");
+        botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         testROBotsTXT();   
@@ -477,7 +480,7 @@ public class Main {
         number++;
 
         // --------- TEST 4 ------------ //
-        botsFile = new File("../botsFile/botsFile" + number +".txt");
+        botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         //finalTestRobotsTXT();
@@ -485,7 +488,7 @@ public class Main {
         number++;
 
         // --------- TEST 5 ------------ //
-        botsFile = new File("../botsFile/botsFile" + number +".txt");
+        botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         finalTestUserAgent();
@@ -494,7 +497,7 @@ public class Main {
         number++;
 
         // --------- TEST 6 ------------ //
-        botsFile = new File("../botsFile/botsFile" + number +".txt");
+        botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         finalTestTwoAlgorithms();     
@@ -502,7 +505,7 @@ public class Main {
         number++;
 
         // --------- TEST 7 ------------ //
-        botsFile = new File("../botsFile/botsFile" + number +".txt");
+        botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         //procedureDNStest();  
@@ -511,7 +514,7 @@ public class Main {
         number++;
 
         // --------- TEST 8 ------------ //
-        botsFile = new File("../botsFile/botsFile" + number +".txt");
+        botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         testDNSImproveEasy();
@@ -519,7 +522,7 @@ public class Main {
         number++;
 
         // --------- TEST 9 ------------ //
-        botsFile = new File("../botsFile/botsFile" + number +".txt");
+        botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         orderListTest();

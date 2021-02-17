@@ -39,4 +39,4 @@ One problem is how can we save the white and black list, and when remove some (o
 
 I tried to implement a binary search in the dns lookup algorithm (procedureDNS), but it was not faster than the original algorithm (procedureDNSimprove)
 
-I would implement
+I would implement a better binary search or another search method to optimize the time

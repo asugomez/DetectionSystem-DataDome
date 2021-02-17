@@ -445,7 +445,7 @@ public class Main {
 
         int number = 0;
         // --------- TEST 0 ------------ //
-        File botsFile = new File("./botsFile/botsFile" + number +".txt");
+        File botsFile = new File("../botsFile/botsFile" + number +".txt");
         PrintStream stream = new PrintStream(botsFile);
         System.setOut(stream);   
         testNoBots1();
@@ -453,7 +453,7 @@ public class Main {
         number++;
 
         // --------- TEST 1 ------------ //
-        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        botsFile = new File("../botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         testNoBots2();
@@ -461,7 +461,7 @@ public class Main {
         number++;
 
         // --------- TEST 2 ------------ //
-        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        botsFile = new File("../botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         testBotsUserAgent();
@@ -469,7 +469,7 @@ public class Main {
         number++;
         
         // --------- TEST 3 ------------ //
-        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        botsFile = new File("../botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         testROBotsTXT();   
@@ -477,7 +477,7 @@ public class Main {
         number++;
 
         // --------- TEST 4 ------------ //
-        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        botsFile = new File("../botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         //finalTestRobotsTXT();
@@ -485,7 +485,7 @@ public class Main {
         number++;
 
         // --------- TEST 5 ------------ //
-        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        botsFile = new File("../botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         finalTestUserAgent();
@@ -494,7 +494,7 @@ public class Main {
         number++;
 
         // --------- TEST 6 ------------ //
-        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        botsFile = new File("../botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         finalTestTwoAlgorithms();     
@@ -502,7 +502,7 @@ public class Main {
         number++;
 
         // --------- TEST 7 ------------ //
-        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        botsFile = new File("../botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         //procedureDNStest();  
@@ -511,7 +511,7 @@ public class Main {
         number++;
 
         // --------- TEST 8 ------------ //
-        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        botsFile = new File("../botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         testDNSImproveEasy();
@@ -519,7 +519,7 @@ public class Main {
         number++;
 
         // --------- TEST 9 ------------ //
-        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        botsFile = new File("../botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         orderListTest();

@@ -1,10 +1,19 @@
 FROM openjdk:8-jdk-alpine
+#VOLUME detectionsystem.jar
+#ARG JAVA_OPTS
+#ENV JAVA_OPTS=$JAVA_OPTS
+COPY /detectionsystem /
+WORKDIR /
 
-VOLUME /tmp
-ARG JAVA_OPTS
-ENV JAVA_OPTS=$JAVA_OPTS
-COPY datadome.jar datadome.jar
-EXPOSE 3000
-ENTRYPOINT exec java $JAVA_OPTS -jar datadome.jar
-# For Spring-Boot project, use the entrypoint below to reduce Tomcat startup time.
-#ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar datadome.jar
+RUN javac detectionsystem/AccessLog.java
+RUN javac detectionsystem/DNSLookUp.java
+RUN javac detectionsystem/Main.java
+
+#RUN jar -cvf datadome.jar /*.class
+
+EXPOSE 8080
+#ENTRYPOINT ["java","-cp", "Main"]
+ENTRYPOINT [ "java","Main"]
+
+#search what to put in each value
+

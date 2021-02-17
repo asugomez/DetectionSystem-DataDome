@@ -7,9 +7,8 @@ docker build -f Dockerfile -t datadome:lastest .
 docker run -i -t --name datadomeContainer -p 8080:8080 datadome:latest
 
 <h3> If the dockerfile does not work... </h3>
-´´´
-  cd detectionsystem
-  javac detectionsystem/*.java
-  java detectionsystem.Main
+<p>  cd detectionsystem </p>
+<p> javac detectionsystem/*.java </p>
+<p> java detectionsystem.Main </p>
 
-# et voilà :)
+### et voilà :)

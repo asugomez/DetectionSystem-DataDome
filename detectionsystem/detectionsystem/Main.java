@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -46,6 +48,7 @@ public class Main {
         whiteList.add("42.236.10.125");
         whiteList.add("87.247.143.30");
         whiteList.add("66.249.66.158");
+        whiteList.add("54.36.149.55");
         return whiteList;
     }
 
@@ -57,6 +60,26 @@ public class Main {
         blackList.add("42.236.10.125");
         blackList.add("42.236.10.117");
         return blackList;
+    }
+
+    /**
+     * 
+     * @return some of logs
+     */
+    public static List<String> logs(){
+        List<String> logsList = new ArrayList<>(); //run the sorted list file and then put some ips here 
+        logsList.add("1.53.169.162");
+        logsList.add("3.88.103.130");
+        logsList.add("193.106.31.130");
+        logsList.add("173.255.176.5");
+        logsList.add("81.16.140.75");
+        logsList.add("162.158.203.24");
+        logsList.add("193.106.31.130");
+        logsList.add("13.66.139.0");
+        logsList.add("54.36.149.55");
+        logsList.add("223.238.202.132");
+        logsList.add("3.91.100.6");
+        return logsList;
     }
 
 
@@ -193,7 +216,7 @@ public class Main {
 
     
     /**
-     * test using the robotsTxtyDetection and the entire website log
+    * test using the robotsTxtyDetection and the entire website log
     */
     public static List<AccessLog> finalTestRobotsTXT(){
         List<AccessLog> listOfBots =  new ArrayList<>();
@@ -224,7 +247,37 @@ public class Main {
     
 
     /**
-     * test using the two algorithms detection and the entire website log
+    * test using the agentUserDetection and the entire website log
+    */
+    public static List<AccessLog> finalTestUserAgent(){
+        List<AccessLog> listOfBots =  new ArrayList<>();
+        List<String> whitelist = whiteList();
+
+        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
+
+        try{
+            String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
+
+            List<AccessLog> listOfLogs = AccessLog.allAccessLog(apacheLog);
+
+            listOfBots = AccessLog.userAgentDetection(listOfLogs, whitelist);
+            if (listOfBots.isEmpty()) {
+                System.out.println("Something got wrong :(");
+            } else {
+                for (AccessLog bot : listOfBots) {
+                    System.out.println(bot.toString());
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        System.out.println("Number of bots: "+ listOfBots.size());
+        return listOfBots;
+    }
+   
+    /**
+    * test using the two algorithms detection and the entire website log
     */
     public static List<AccessLog> finalTestTwoAlgorithms(){
         List<AccessLog> listOfBots =  new ArrayList<>();
@@ -259,7 +312,7 @@ public class Main {
     /**
      * test using the dns lookup detection and the entire website log
     */
-    public static List<AccessLog> finalTestDNS(){
+    public static List<AccessLog> procedureDNStest(){
         List<AccessLog> listOfBots =  new ArrayList<>();
         List<String> whitelist = whiteList();
         List<String> blacklist = blackList();
@@ -287,33 +340,111 @@ public class Main {
 
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    /**
+     * test the sortIPaddresses method
+     * @return a sorted list of the ip addresses
+    */
+    public static List<String> orderListTest(){
+        List<String> ipAddress = new ArrayList<>();
+        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
 
+        try{
+            String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
 
-        String apacheLog = listWithoutBots();
-        List<AccessLog> listOfLogs = AccessLog.allAccessLog(apacheLog);
-        System.out.println(DNSLookUp.sortIPAddress(listOfLogs));
+            List<AccessLog> listOfLogs = AccessLog.allAccessLog(apacheLog);
+            ipAddress = DNSLookUp.sortIPAddress(listOfLogs);
 
-        /*List<String> addressList = new ArrayList<>();
-
-        for (AccessLog log : listOfLogs) {
-            addressList.add(log.getRemoteHost());
+        }catch (IOException e){
+            e.printStackTrace();
         }
-        Collections.sort(addressList, (a, b) -> {
-            int[] aOct = Arrays.stream(a.split("\\.")).mapToInt(Integer::parseInt).toArray();
-            int[] bOct = Arrays.stream(b.split("\\.")).mapToInt(Integer::parseInt).toArray();
-            int r = 0;
-            for (int i = 0; i < aOct.length && i < bOct.length; i++) {
-                r = Integer.compare(aOct[i], bOct[i]);
-                if (r != 0) {
-                    return r;
+        for(String ip: ipAddress){
+            System.out.println("ip: "+ ip);
+        }
+        
+        return ipAddress;
+    }
+
+    /**
+     * test the second dns lookup method (improved)
+     * @return a list of the bots detected
+     */
+    public static List<AccessLog> testDNSlookupImprove(){
+        List<AccessLog> listOfBots =  new ArrayList<>();
+        List<String> whitelist = whiteList();
+        List<String> blacklist = blackList();
+
+        String pathWebSiteLog = "/Users/asugomez/Desktop/DataDome/webSiteLog.txt";
+
+        try{
+            String apacheLog= Files.readString(Paths.get(pathWebSiteLog));
+            List<AccessLog> listOfLogs = AccessLog.allAccessLog(apacheLog);
+
+
+            System.out.println("im here");
+            listOfBots = DNSLookUp.procedureDNSImprove(listOfLogs,whitelist, blacklist);
+            System.out.println("im here 2");
+
+            if (listOfBots.isEmpty()) {
+                System.out.println("Something got wrong :(");
+            } else {
+                for (AccessLog bot : listOfBots) {
+                    System.out.println(bot.toString());
                 }
             }
-            return r;
-        });
-        System.out.println(addressList);*/
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        System.out.println("Number of bots: "+ listOfBots.size());
+        return listOfBots;
 
-        /*int number = 0;
+    }
+    
+    public static void testDNSImproveEasy(){
+        List<AccessLog> listOfBots =  new ArrayList<>();
+
+        List<String> whiteList = whiteList();
+        List<String> blackList = blackList();
+
+        List<String> logsList= logs();
+    
+        Collections.sort(logsList);
+        int i=0;
+        for(String ip: logsList){
+            if(DNSLookUp.binarySearch(whiteList, ip)<0 && DNSLookUp.binarySearch(blackList, ip)<0){
+                try {
+                    //reverse DNS lookup --> request IP    
+                    System.out.println(ip)  ;
+
+                    InetAddress hostname = InetAddress.getByName(ip);
+                    String hostNameString = hostname.getHostName();
+
+                    InetAddress ipAddress = InetAddress.getByName(hostNameString);
+                    String ipAddressString = ipAddress.getHostAddress();
+
+                    if(ipAddressString == ip){
+                        whiteList.add(ip);
+                        System.out.println("good bot");
+                    }
+                    
+                    else{
+                       
+                        blackList.add(ip);
+                        System.out.println(i + " "+"bad bot");
+                        i++;
+                    }
+                } catch (UnknownHostException e) {
+                    System.out.println("Unrecognized host");
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+    }
+    public static void main(String[] args) throws FileNotFoundException {
+
+        int number = 0;
+        // --------- TEST 0 ------------ //
         File botsFile = new File("./botsFile/botsFile" + number +".txt");
         PrintStream stream = new PrintStream(botsFile);
         System.setOut(stream);   
@@ -321,6 +452,7 @@ public class Main {
 
         number++;
 
+        // --------- TEST 1 ------------ //
         botsFile = new File("./botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
@@ -328,13 +460,15 @@ public class Main {
 
         number++;
 
+        // --------- TEST 2 ------------ //
         botsFile = new File("./botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         testBotsUserAgent();
 
         number++;
-
+        
+        // --------- TEST 3 ------------ //
         botsFile = new File("./botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
@@ -342,13 +476,24 @@ public class Main {
 
         number++;
 
+        // --------- TEST 4 ------------ //
         botsFile = new File("./botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
-        finalTestRobotsTXT();
+        //finalTestRobotsTXT();
 
         number++;
 
+        // --------- TEST 5 ------------ //
+        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        stream = new PrintStream(botsFile);
+        System.setOut(stream); 
+        finalTestUserAgent();
+        System.out.println("will not work until we fixe the regex problem in the method allAccessLog in AccessLoj.java file");
+
+        number++;
+
+        // --------- TEST 6 ------------ //
         botsFile = new File("./botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
@@ -356,10 +501,39 @@ public class Main {
         
         number++;
 
+        // --------- TEST 7 ------------ //
         botsFile = new File("./botsFile/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
-        finalTestDNS();     */
+        //procedureDNStest();  
+
+        
+        number++;
+
+        // --------- TEST 8 ------------ //
+        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        stream = new PrintStream(botsFile);
+        System.setOut(stream); 
+        testDNSImproveEasy();
+
+        number++;
+
+        // --------- TEST 9 ------------ //
+        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        stream = new PrintStream(botsFile);
+        System.setOut(stream); 
+        orderListTest();
+
+        /*
+        number++;
+
+        // --------- TEST 10 ------------ //
+        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        stream = new PrintStream(botsFile);
+        System.setOut(stream); 
+        testDNSlookupImprove();
+        */
+        
     
     
 

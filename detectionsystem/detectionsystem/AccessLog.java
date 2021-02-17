@@ -213,7 +213,7 @@ public class AccessLog {
         // ---------- BEGIN -------------
         // Creating a regular expression for the records REGEX
         final String accessExpression = "^(\\S+) (\\S+) (\\S+) " + "\\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+)"
-                + " (\\S+)\\s*(\\S+)?\\s*\" (\\d{3}) (\\S+)" + " (\\S*)\\s* " + "(\\S*\\s*)";
+                + " (\\S+)\\s*(\\S+)?\\s*\" (\\d{3}) (\\S+)" + " (\\S*)\\s* " + "(\\S*)\\s*"; //TODO #1 verifier ça
 
         final Pattern pattern = Pattern.compile(accessExpression, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(apacheLog);

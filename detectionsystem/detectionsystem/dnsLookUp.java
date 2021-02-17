@@ -17,7 +17,7 @@ public class DNSLookUp {
      * @param allAccessLog the list of all the website logs
      * @param whiteList a list with all the ip addresses of the good bots or human's ip
      * @param blackList a list with all the bad bot's ip addresses
-     * @return botsList a list of bots detected 
+     * @return botsList a list of bad bots detected 
      */
     public static List<AccessLog> procedureDNS(List<AccessLog> allAccessLog, List<String> whiteList, List<String> blackList) {
         List<AccessLog> botsList = new ArrayList<>();
@@ -53,6 +53,57 @@ public class DNSLookUp {
     }
 
     
+    /**
+     * Improves the procedureDNS method
+     * @param allAccessLog
+     * @param whiteList
+     * @param blackList
+     * @return a list of bad bots detected
+     */
+    public static List<AccessLog> procedureDNSImprove(List<AccessLog> allAccessLog, List<String> whiteList, List<String> blackList) {
+        List<AccessLog> botsList = new ArrayList<>();
+        for (AccessLog accessLog : allAccessLog) {
+            
+            String ip = accessLog.getRemoteHost();
+            //if the hostname is not in the white or black list -->
+            if(binarySearch(whiteList, ip) < 0 && binarySearch(blackList, ip) < 0 ){
+                try {
+                    //reverse DNS lookup --> request IP    
+                    System.out.println(ip)  ;
+
+                    InetAddress hostname = InetAddress.getByName(ip);
+                    String hostNameString = hostname.getHostName();
+
+                    InetAddress ipAddress = InetAddress.getByName(hostNameString);
+                    String ipAddressString = ipAddress.getHostAddress();
+
+                    if(ipAddressString == ip){
+                        whiteList.add(ip);
+                        System.out.println("good user agent");
+                    }
+                    else{
+                        blackList.add(ip);
+                        botsList.add(accessLog);
+                        System.out.println("bad bot");
+                    }
+                } catch (UnknownHostException e) {
+                    System.out.println("Unrecognized host");
+                    e.printStackTrace();
+                }
+
+            }
+        }
+        
+
+        return botsList;
+
+    }
+
+    /**
+     * Method that order the ip addresses from a list of access log
+     * @param allAccessLog
+     * @return a sorted ip addresses list
+     */
     public static List<String> sortIPAddress(List<AccessLog> allAccessLog){
 
         List<String> addressList = new ArrayList<>();
@@ -60,8 +111,12 @@ public class DNSLookUp {
         if(allAccessLog!=null){
             //Create a list only of the ip addresses
             for (AccessLog log : allAccessLog) {
-                addressList.add(log.getRemoteHost());
+                //there are some letters inside the ip address (3 logs only)
+                if(!(log.getRemoteHost().contains("a") || log.getRemoteHost().contains("b"))){
+                    addressList.add(log.getRemoteHost());
+                }
             }
+
             //code from https://stackoverflow.com/questions/44079260/java-how-to-sort-a-list-of-ip-address 
             Collections.sort(addressList, (a, b) -> {
                 int[] aOct = Arrays.stream(a.split("\\.")).mapToInt(Integer::parseInt).toArray();
@@ -76,37 +131,17 @@ public class DNSLookUp {
                 return r;
             });
         }
-        
-        System.out.println(addressList);
         return addressList;
     }
-    
+
     /**
-     * Improves the procedureDNS method
-     * Store the data in a structured way, so that queries are run relatively fast, although the storing itself is slower.
-
-     *ordenarlos de mayor a menor y hacer busqueda binaria 
-     * which is better: array or linked list?
-     * @param allAccessLog
-     * @param whiteList
-     * @param blackList
-     * @return a list of bots detected
+     * Implements the binary search on a list of string
      */
-    public static List<AccessLog> procedureDNSImprove(List<AccessLog> allAccessLog, List<String> whiteList, List<String> blackList) {
-        List<AccessLog> botsList = new ArrayList<>();
-        
-
-        return botsList;
-
-    }
-    //implement a compareTo
-
-    //with binary search we have a complexity of O(logN) on the worst case (betther than linear search = O(N))
-    public static boolean binarySearch(List<String> logsList, String ipAddress){
-
-        return false;
-    }
-
+    public static int binarySearch(List<String> logsList, String ipAddress){
+        Collections.sort(logsList);
+        int index = Collections.binarySearch(logsList, ipAddress);
+        return index;
+    } 
     
     
     

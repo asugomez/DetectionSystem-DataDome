@@ -4,8 +4,6 @@ COPY /detectionsystem/ /detectionsystem/
 
 RUN javac /detectionsystem/detectionsystem/*.java
 
-#COPY /detectionsystem /detectionsystem
-
 EXPOSE 8080
 
 WORKDIR /detectionsystem

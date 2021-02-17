@@ -509,7 +509,7 @@ public class Main {
         botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
-        //procedureDNStest();  
+        procedureDNStest();  
 
         
         number++;

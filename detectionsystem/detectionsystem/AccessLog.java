@@ -116,6 +116,7 @@ public class AccessLog {
      */
     public String getRemoteHost() {
         String remoteHostCopie = this.remoteHost;
+        
         return remoteHostCopie;
     }
 
@@ -213,7 +214,7 @@ public class AccessLog {
         // ---------- BEGIN -------------
         // Creating a regular expression for the records REGEX
         final String accessExpression = "^(\\S+) (\\S+) (\\S+) " + "\\[([\\w:/]+\\s[+\\-]\\d{4})\\] \"(\\S+)"
-                + " (\\S+)\\s*(\\S+)?\\s*\" (\\d{3}) (\\S+)" + " (\\S*)\\s* " + "(\\S*)\\s*"; //TODO #1 verifier ça
+                + " (\\S+)\\s*(\\S+)?\\s*\" (\\d{3}) (\\S+)" + " (\\S*)\\s* " +  "\"(.*?)\""; 
 
         final Pattern pattern = Pattern.compile(accessExpression, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(apacheLog);

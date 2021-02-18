@@ -21,25 +21,29 @@ public class DNSLookUp {
      */
     public static List<AccessLog> procedureDNS(List<AccessLog> allAccessLog, List<String> whiteList, List<String> blackList) {
         List<AccessLog> botsList = new ArrayList<>();
+
         for (AccessLog accessLog : allAccessLog) {
+            String ip = accessLog.getRemoteHost(); 
             //if the ip address is not in the whitelist or in the blacklist
-            if(!(whiteList.contains(accessLog.getRemoteHost()) || blackList.contains(accessLog.getRemoteHost()))){
+            if(!(whiteList.contains(ip) || blackList.contains(ip))){
                 try {
                     //reverse DNS lookup --> request IP    
-                    String ip = accessLog.getRemoteHost();   
-
                     InetAddress hostname = InetAddress.getByName(ip);
                     String hostNameString = hostname.getHostName();
 
                     InetAddress ipAddress = InetAddress.getByName(hostNameString);
                     String ipAddressString = ipAddress.getHostAddress();
 
-                    if(ipAddressString == accessLog.getRemoteHost()){
-                        whiteList.add(accessLog.getRemoteHost());
+                    if(ipAddressString.equals(ip)){
+                        whiteList.add(ip);
+                        
                     }
+                    
                     else{
-                        blackList.add(accessLog.getRemoteHost());
+                        blackList.add(ip);
                         botsList.add(accessLog);
+                        
+                        
                     }
                 } catch (UnknownHostException e) {
                     System.out.println("Unrecognized host");
@@ -77,14 +81,12 @@ public class DNSLookUp {
                     InetAddress ipAddress = InetAddress.getByName(hostNameString);
                     String ipAddressString = ipAddress.getHostAddress();
 
-                    if(ipAddressString == ip){
+                    if(ipAddressString.equals(ip)){
                         whiteList.add(ip);
-                        System.out.println("good user agent");
                     }
                     else{
                         blackList.add(ip);
                         botsList.add(accessLog);
-                        System.out.println("bad bot");
                     }
                 } catch (UnknownHostException e) {
                     System.out.println("Unrecognized host");

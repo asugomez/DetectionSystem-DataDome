@@ -12,10 +12,9 @@ public class Main {
 
         int number = 0;
         File botsFolder = new File("botsFolder");
-        botsFolder.mkdirs();
-        /*if (!botsFolder.exists()){
+        if (!botsFolder.exists()){
             botsFolder.mkdirs();
-        }*/
+        }
         // --------- TEST 0 ------------ //
         File botsFile = new File("./botsFolder/botsFile" + number +".txt");
         PrintStream stream = new PrintStream(botsFile);
@@ -100,7 +99,7 @@ public class Main {
         number++;
 
         // --------- TEST 10 (not fast) ------------ //
-        botsFile = new File("./botsFile/botsFile" + number +".txt");
+        botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
         //Test.testDNSlookupImprove();

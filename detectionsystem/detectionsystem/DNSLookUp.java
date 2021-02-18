@@ -20,6 +20,7 @@ public class DNSLookUp {
      * @return botsList a list of bad bots detected 
      */
     public static List<AccessLog> procedureDNS(List<AccessLog> allAccessLog, List<String> whiteList, List<String> blackList) {
+        
         List<AccessLog> botsList = new ArrayList<>();
 
         for (AccessLog accessLog : allAccessLog) {
@@ -31,19 +32,18 @@ public class DNSLookUp {
                     InetAddress hostname = InetAddress.getByName(ip);
                     String hostNameString = hostname.getHostName();
 
+                    //if timeReques > ... --> add to the black (white) list
+
                     InetAddress ipAddress = InetAddress.getByName(hostNameString);
                     String ipAddressString = ipAddress.getHostAddress();
 
                     if(ipAddressString.equals(ip)){
-                        whiteList.add(ip);
-                        
+                        whiteList.add(ip);                        
                     }
                     
                     else{
                         blackList.add(ip);
                         botsList.add(accessLog);
-                        
-                        
                     }
                 } catch (UnknownHostException e) {
                     System.out.println("Unrecognized host");
@@ -59,6 +59,7 @@ public class DNSLookUp {
     
     /**
      * Improves the procedureDNS method
+     * Another improve not implemented --> limite the number of hostname
      * @param allAccessLog
      * @param whiteList
      * @param blackList
@@ -73,10 +74,10 @@ public class DNSLookUp {
             if(binarySearch(whiteList, ip) < 0 && binarySearch(blackList, ip) < 0 ){
                 try {
                     //reverse DNS lookup --> request IP    
-                    System.out.println(ip)  ;
-
                     InetAddress hostname = InetAddress.getByName(ip);
                     String hostNameString = hostname.getHostName();
+
+                    //if timeReques > ... --> add to the black (white) list
 
                     InetAddress ipAddress = InetAddress.getByName(hostNameString);
                     String ipAddressString = ipAddress.getHostAddress();

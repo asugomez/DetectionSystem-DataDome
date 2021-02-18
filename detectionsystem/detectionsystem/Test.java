@@ -224,8 +224,6 @@ public class Test {
         } catch (IOException e){
             e.printStackTrace();
         }
-        System.out.println("whitelist");
-        System.out.println(whitelist);
         System.out.println("Number of bots: "+ listOfBots.size());
         return listOfBots;
 

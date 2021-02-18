@@ -258,6 +258,7 @@ public class AccessLog {
             // https://developers.google.com/search/docs/advanced/crawling/overview-google-crawlers
             // and
             // https://stackoverflow.com/questions/677419/how-to-detect-search-engine-bots-with-php)
+            //TODO: fixer
             if (!whiteList.contains(accessLog.userAgent)) {
                 if (accessLog.userAgent.toUpperCase().contains("BOT")
                         || accessLog.userAgent.toUpperCase().contains("SPIDER")

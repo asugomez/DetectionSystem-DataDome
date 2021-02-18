@@ -51,7 +51,7 @@ public class Main {
         botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
-        //Test.finalTestRobotsTXT();
+        Test.finalTestRobotsTXT();
 
         number++;
 
@@ -59,7 +59,7 @@ public class Main {
         botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
-        //Test.finalTestUserAgent();
+        Test.finalTestUserAgent();
         
 
         number++;
@@ -68,7 +68,7 @@ public class Main {
         botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
-        //Test.finalTestTwoAlgorithms();     
+        Test.finalTestTwoAlgorithms();     
         
         number++;
 
@@ -93,7 +93,7 @@ public class Main {
         botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
-        //Test.orderListTest();
+        Test.orderListTest();
 
         
         number++;
@@ -102,7 +102,7 @@ public class Main {
         botsFile = new File("./botsFolder/botsFile" + number +".txt");
         stream = new PrintStream(botsFile);
         System.setOut(stream); 
-        //Test.testDNSlookupImprove();
+        Test.testDNSlookupImprove();
         
     }
 }

@@ -145,6 +145,8 @@ public class DNSLookUp {
         int index = Collections.binarySearch(logsList, ipAddress);
         return index;
     } 
+
+    //TODO: lire ligne par ligne
     
     
     

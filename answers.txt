@@ -1,13 +1,13 @@
-#Technical Challenge 
+# Technical Challenge 
 
-##Step 1 (Data Analysis):
+## Step 1 (Data Analysis):
 
-###Do you think there is bot traffic on this site? Why?
+### Do you think there is bot traffic on this site? Why?
 Yes for some many reasons. First, we can see there are a lot of logs from the same remote host in a short time. Then, we can also see in the user-agent some very famomus bots 
 (like google bot, bing bot, AhrefsBot, etc).
 Also, if we check the robots.txt file of the website, we can see there are some bots trying to enter into the forbidden folders.
 
-###How would you qualify a "normal" human traffic on this site? Based on which criteria?
+### How would you qualify a "normal" human traffic on this site? Based on which criteria?
 
 With the website log of this site, I would detect the number of requests. If you can see a large number of request in a short time, it is not a normal human traffic, therefore is a bot.
 
@@ -17,7 +17,7 @@ A normal human traffic won't show daily similarities in their request count chan
 
 https://geant3.archive.geant.org/media_centre/media_library/media%20library/gn3_jra2_t4_m4_deliverable.pdf 
 
-###Could you focus on 1 good bot and 1 bad bot to tell us more about them?
+### Could you focus on 1 good bot and 1 bad bot to tell us more about them?
 One good bot is AhrefBots (marketing bot) which, according to their website, it crawls the website making notes of outbound links and adding them to the ahrefbots database. It will periodically re-crawl the website to check the current status of previously found links. It does not collect or store any other information about the website. It does not trigger ads on your website (if any) and won’t add numbers to your Google Analytics traffic.
 Also, the good bots will always respects the robots.txt file
 
